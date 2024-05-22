@@ -29,9 +29,7 @@
                   <form action="/auth/login" method="post" class="row g-3 needs-validation">
                     {{-- this cross site request forgery (csrf) to protect user from csrf attacks --}}
                     {{ csrf_field() }}
-                    @if(session()->has('Login Successfully'))
-                    
-                    @endif
+                   
                     @if(session()->has('loginError'))
                       <div class="alert alert-danger" role="alert">
                         Incorrect Username or Password!
@@ -64,6 +62,9 @@
                       <button class="btn-login w-50 position-relative top-98 start-50 translate-middle" type="submit" id="login">
                         Login
                       </button>
+                    </div>
+                    <div class="col-12">
+                      <p class="small mb-0">Forgot password?<a href="/auth/forgot-password"></a></p>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account?<a href="/auth/regist"> Create an account</a></p>

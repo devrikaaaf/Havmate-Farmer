@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Distributor;
 use App\Models\Farmer;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\DB;
 
@@ -81,12 +80,12 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
 
             //alert if the user succes to login
-            Alert::success('Login Successfully');
+            // Alert::success('Login Successfully');
 
             $request->session()->regenerate(); //session regenerate is to prevent session fixation attacks
 
             // the user will go to the dashboard
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/dashboard')->with('loginSuccess');
         }
         //if the user failed to login
         return back()->with('loginError','Invalid Username and Password!');

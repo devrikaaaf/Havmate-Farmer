@@ -6,7 +6,7 @@
 @section('container')
 
 <a href="/dashboard/distributor/index">
-    <button type="button" class="btn btn-primary mb-3" >
+    <button type="button" class="btn btn-primary mb-3" style="background: #0D261D; color: white; border: #0D261D; border-radius: 4px;"  >
         <i class="ri-arrow-left-line"></i>
         Back
     </button>
@@ -23,11 +23,11 @@
             <h2>{{ $distributor->Dist_Name }}</h2>
             <h5>{{ $distributor->Dist_ID}}</h5> 
             <div class="social-links mt-2">
-                <a href="/dashboard/offering/offer/{{ $distributor->id }}" style="text-decoration: none" >
-                    <button type="button" class="btn btn-primary">Offer</button>
+                <a href="/dashboard/offering/offer/{{ $distributor->id }}" >
+                    <button type="button" class="btn-offer">Offer</button>
                 </a>
-                <a href="/chat/{{ $distributor->Dist_ID }}"  style="text-decoration: none">
-                <button type="button" class="btn btn-primary">Chat</button>
+                <a href="/chat/{{ $distributor->Dist_ID }}">
+                <button type="button" class="btn-chat">Chat</button>
                 </a>
               </div>  
           </div>

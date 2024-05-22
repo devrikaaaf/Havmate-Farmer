@@ -18,7 +18,7 @@
 
 <!-- Template Main CSS File -->
 <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
-
+<script src="{{ asset("sweetalert2.all.min.js") }}"></script>
 {{-- jquery --}}
 <script src="{{ asset("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js") }}"></script>
 

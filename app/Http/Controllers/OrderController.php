@@ -43,6 +43,19 @@ class OrderController extends Controller
         $ord->Notes= request('inputNotes');
         $ord->status= 'Waiting';
 
+        // decrease the stock
+        // collect the qty of product
+        $qty = $ord->Qty; 
+        // collect the current stock of product
+        $harvStock = $harv->Harv_Stock;
+        // product id
+        $hrv_id = $harv->id;
+
+        $current = $harvStock - $qty;
+
+        // update the data on database
+        DB::update('update harvests set Harv_Stock=? where id=?', [$current, $hrv_id]);
+
         $ord->save(); 
      return redirect('/dashboard/ordering/fromDistributor/index');
     }
@@ -101,6 +114,51 @@ class OrderController extends Controller
 
     public function showToDistributor() : View
     {
+        return view('/dashboard/ordering/index', [
+            'title' => 'Order Status',  
+            'ordering' => Order::paginate(10),
+        ]);
+    }
+
+    //  when the farmer accept the order
+    public function acceptOrder($id): View
+    {
+        // update into order table
+        DB::update('update orders set status=? where id=?', ["Accepted", $id]);
+
+        return view('/dashboard/ordering/index', [
+            'title' => 'Incoming Orders',  
+            'ordering' => Order::paginate(10),
+        ]);
+    }
+    //  when the farmer accept the order
+    public function declineOrder($id): View
+    {
+        // update into order table
+        DB::update('update orders set status=? where id=?', ["Declined", $id]);
+
+        return view('/dashboard/ordering/index', [
+            'title' => 'Incoming Orders',  
+            'ordering' => Order::paginate(10),
+        ]);
+    }
+    //  when the distributor return the order product
+    public function returnOrder($id): View
+    {
+        // update into orders table
+        DB::update('update orders set status=? where id=?', ["Return", $id]);
+
+        return view('/dashboard/ordering/index', [
+            'title' => 'Order Status',  
+            'ordering' => Order::paginate(10),
+        ]);
+    }
+    //  when the distributor complete the order
+    public function completeOrder($id): View
+    {
+        // update into orders table
+        DB::update('update orders set status=? where id=?', ["Complete", $id]);
+
         return view('/dashboard/ordering/index', [
             'title' => 'Order Status',  
             'ordering' => Order::paginate(10),

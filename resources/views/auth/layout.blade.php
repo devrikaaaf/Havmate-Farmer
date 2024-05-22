@@ -32,6 +32,7 @@
 
 {{-- Sweet alert --}}
 <script src="{{ asset("https://cdn.jsdelivr.net/npm/sweetalert2@11") }}"></script>
+<script src="{{ asset("sweetalert2.all.min.js") }}"></script>
 
 <!-- Vendor JS Files -->
 <script src="{{ asset("assets/vendor/apexcharts/apexcharts.min.js") }}"></script>

@@ -9,8 +9,7 @@
     <h5 class="card-title">Let's ordering some products, {{ auth()->user()->username }}!</h5>
 
     <!-- Ordering Form -->
-    <form action= "/dashboard/ordering/index/{{ $product->id }}" method="post" 
-    enctype="multipart/form-data" class="row g-3">
+    <form action= "/dashboard/ordering/index/{{ $product->id }}" method="post" enctype="multipart/form-data" class="row g-3">
       @csrf
       <div class="col-md-6">
         <label for="inputProdName">Product Name</label>
@@ -46,7 +45,7 @@
       </div>
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary">Send order</button>
+        <button type="submit" class="btn-order">Send order</button>
       </div>
 
 </form>
@@ -55,39 +54,31 @@
 </div>
 <script>
   $(document).ready(function() {
+      // Attach a change event listener to the input field
+      $('#inputQty').change(function() {
+          // Get the current value of the input field
 
-      // fill the input field based on the selected product
-      $('#inputTotalPrice').on('focus' ,function(){         
-            // collect the quantity value from user input
-            const qty = document.getElementById('inputQty').value;
-            $('[name=inputQty]').val(qty);
+          if (parseInt($('#inputQty').val()) > parseInt($('#inputHarvStock').val())) {
+              const res = parseInt($('#inputQty').val()) - parseInt($('#inputHarvStock').val());
+              Swal.fire({
+                  title: 'Out of Stock',
+                  text: 'kamu membutuhkan sekitar ' + res + 'pcs lagi',
+                  icon: 'info',
+                  confirmButtonText: 'OK'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      $('#inputQty').val($('#inputHarvStock').val())
+                  }
+              });
 
-            const stock = document.getElementById('inputHarvStock').value; 
-            // $('[name=inputHarvStock]').val(stock);
-
-            const price = document.getElementById('inputHarvPrice').value;  
-            // $('[name=inputHarvPrice]').val(price);
-
-                  // if products are out-of-stock
-                  if(qty > stock){
-                    const need = qty - stock;
-                      Swal.fire({
-                      icon: "info",
-                      title: "Stock only " + stock + " !",
-                      text: "You need " + need + " kg more" ,  
-                      }).then(
-                          // set the number of qty = 0
-                          $('#inputQty').val(0)
-                      );   
-
-                  }else{
-                    // calculate the total price based on the quantity
-                    const totalPrice = parseInt(qty) * parseInt(price);
-                    $('[name=inputTotalPrice]').val(totalPrice);
-                  }  
-          });
+          }
+          let inputValue = $(this).val();
+          const price = $('#inputHarvPrice').val();
+          const res = parseInt(inputValue) * parseInt(price);
+          let total_value = $('#inputTotalPrice').val(res);
+          console.log('The input value has changed to: ' + res);
       });
-              
+  });
 </script>
 @endsection
 

@@ -76,10 +76,11 @@
        @foreach ($products as $prod) 
           <div class="card">
             <a href = "/dashboard/products/prod/{{ $prod->id}}"  style="text-decoration: none;">
-              <img src="{{ $prod->Image_Harv }}" class="card-img-top" alt="..."  style="height: 200px; width: 250px; margin-top: 20px">
+              <img src="{{ $prod->Image_Harv }}" class="card-img-top" alt="..."  style="width:200; height: 120; margin-top: 20px">
               <div class="card-body">
                 <h5 class="card-title"> {{ $prod->Harv_Name }}</h5>
                 <p class="card-text">
+                 Rp.{{ number_format($prod->Harv_Price )}} /kg
                 </p>
               </div>
             </a>

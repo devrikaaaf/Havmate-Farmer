@@ -67,7 +67,7 @@
 
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary">Send offering</button>
+        <button type="submit" class="btn-offer">Send offering</button>
       </div>
 
 </form>
@@ -88,7 +88,7 @@
           $('[name=inputHarvStock]').val(stock);   
 
            // when the inputTotalPrice onfocus, calculate the total price
-           $('#inputTotalPrice').change( function(){
+           $('#inputTotalPrice').on('focus', function(){
             
               // collect the quantity value from user input
               const qty = document.getElementById('inputHarvQty').value;

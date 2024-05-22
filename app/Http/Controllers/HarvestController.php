@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Harvest;
-use App\Models\Farmer;
+use App\Models\Offering;
+use App\Models\Order;
 use App\Models\User;
 use App\Http\Requests\UpdateHarvestRequest;
 use Illuminate\Http\Request;
@@ -78,7 +79,7 @@ class HarvestController extends Controller
             return view('/dashboard/products/prod', [
                 "title" => 'Detail Product',
                 "products" => Harvest::find($id),
-                "farmer" => Farmer::find($farm)
+                "farmer" => User::find($farm)
             ]);
 
     }
@@ -152,7 +153,4 @@ class HarvestController extends Controller
         ]);
     }
 
-    public function currentStock(){
-
-    }
 }

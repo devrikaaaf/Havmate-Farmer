@@ -5,8 +5,8 @@
 {{-- Detail Product --}}
 @section('container')
 
-<a href="/dashboard/ordering/index">
-    <button type="button" class="btn btn-primary mb-3" >
+<a href="/dashboard/ordering/fromDistributor/index">
+    <button type="button" class="btn mb-4" style="background: #0D261D; color: white; border: #0D261D; border-radius: 4px;" >
         <i class="ri-arrow-left-line"></i>
         Back
     </button>
@@ -20,14 +20,14 @@
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
             <img src="{{ $products->Image_Harv }}" alt="Profile" style="height: 100px; width: 400px;">
-            <h2>{{ $products->Harv_Name }}</h2>
-            <h5>{{ $products->Harv_ID}}</h5> 
+            <h2>{{ $products->Harv_Name }}</h2><br>
+            <span class="h6"><b>Price</b> Rp.{{ $products->Harv_Price}} | <b>Stock :</b> {{ $products->Harv_Stock}} kg</span> 
             <div class="social-links mt-2">
                 <a href="/dashboard/ordering/order/{{ $products->id }}" >
-                    <button type="button" class="btn btn-primary">Order</button>
+                    <button type="button" class="btn-order">Order</button>
                 </a>
                 <a href="/chat/{{ $products->Farmer_ID }}">
-                <button type="button" class="btn btn-primary">Chat</button>
+                <button type="button" class="btn-chat" >Chat</button>
                 </a>
               </div>  
           </div>
@@ -44,13 +44,6 @@
               <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
               </li>
-              {{-- <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-purchase">Purchase Needs</button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-product">Product</button>
-              </li> --}}
-             
             </ul>
 
             {{-- overview --}}
@@ -79,17 +72,17 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Farmer Address</div>
-                  <div class="col-lg-9 col-md-8">{{ $farmer->Farmer_Address }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $farmer->address }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Phone</div>
-                  <div class="col-lg-9 col-md-8">{{ $farmer->Farmer_Phone}}</div>
+                  <div class="col-lg-9 col-md-8">{{ $farmer->phone}}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">{{ $farmer->Farmer_Email}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $farmer->email}}</div>
                 </div>
                 {{-- @endcan
                 @endforeach --}}

@@ -272,8 +272,31 @@ h6 {
     padding: 0 20px 20px 20px;
 }
 
+.card-body .btn-order,
+.card-body .btn-offer,
+.card-body .btn-chat {
+    font-size: 13px;
+    font-weight: 400;
+    background: #0D261D;
+    color: white;
+    border: #0D261D;
+    border-radius: 5px;
+    padding: 15px;
+    text-decoration: none
+}
+
+.card-body .btn-order:hover,
+.card-body .btn-offer:hover,
+.card-body .btn-chat:hover {
+    background: #E7FFDC;
+    color: #0D261D;
+    border: solid 1px #0D261D;
+}
+
 .card-body .btn-login,
-.card-body .btn-regist {
+.card-body .btn-regist,
+.card-body .btn-addProd,
+.card-body .btn-upProd {
     padding: 5px;
     display: justify;
     margin-top: 5px;
@@ -347,7 +370,10 @@ h6 {
 } */
 
 .card-body .btn-login:hover,
-.card-body .btn-regist:hover {
+.card-body .btn-regist:hover,
+.card-body .btn-addProd:hover,
+.card-body .btn-upProd:hover,
+{
     padding: 5px;
     height: 35px;
     background: #fff;
@@ -1403,7 +1429,7 @@ h6 {
     gap: 20px 20px;
     width: 100%;
     text-align: center;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 
 .flex-container:hover {
@@ -1508,14 +1534,15 @@ h6 {
     border: 1.5px solid #0D261D;
 }
 
-
-/* @media (max-width: 90px) {
+@media (max-width: 90px) {
     .search {
         flex-direction: column;
     }
-} */
+}
 
-.text-center btn {
-    color: #fff;
-    width: 50px;
+
+}
+
+}
+
 }

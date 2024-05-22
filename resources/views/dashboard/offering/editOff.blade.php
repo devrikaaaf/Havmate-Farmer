@@ -50,7 +50,7 @@
 
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary">Update Offering</button>
+        <button type="submit" class="btn-upOffer"  style="background: #0D261D; color: white; border: #0D261D; border-radius: 5px; padding: 8px;"  >Update Offering</button>
       </div>
 
 </form>

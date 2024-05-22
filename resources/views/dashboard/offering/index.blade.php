@@ -14,7 +14,7 @@
           <th scope="col">Offer_ID</th>
           <th scope="col">Distributor</th>
           <th scope="col">Product</th>
-          <th scope="col">Quantity (/kg)</th>
+          <th scope="col">Quantity (kg)</th>
           <th scope="col">Total Price</th>
           <th scope="col">Notes</th>
           <th scope="col">Status</th>
@@ -32,10 +32,32 @@
               <td>{{ $off->Dist_Name}}</td>
               <td>{{ $off->Harv_Name}}</td>
               <td>{{ $off->Qty}}</td>
-              <td>{{ $off->Offer_Price}}</td>
+              <td>Rp.{{ number_format($off->Offer_Price)}}</td>
               <td>{{ $off->Notes}}</td>
-              <td id="farmer_status">{{ $off->status }}</td> 
-              <td id="farmer_action">
+              <td>
+                
+                <div id="process">
+                  @if($off->status === 'Accepted')
+                    <button class="btn btn-success" style="cursor:default;">Accepted</button>
+                  @endcan
+                  @if($off->status === 'Waiting')
+                    <button class="btn btn-warning" style="cursor:default;">Waiting</button>
+                  @endcan
+                  @if($off->status === 'Declined')
+                    <button class="btn btn-danger" style="cursor:default;">Declined</button>
+                  @endcan
+                  {{-- if the status complete --}}
+                  @if($off->status === 'Complete')
+                  <button class="btn btn-success" style="cursor:default;">Complete</button>
+                @endcan
+                @if($off->status === 'Return')
+                <button class="btn btn-secondary" style="cursor:default;">Return</button>
+              @endcan
+                  </div>
+                
+              </td> 
+              <td>
+                @if($off->status === 'Waiting')
                 {{-- delete button --}}
                 <a href="/dashboard/offering/index/{{ $off->id }}" class="btn btn-danger" id="btnDelete" style="color: white; text-decoration:none">
                   <i class="bi bi-trash3" style="color: white;"></i> Delete
@@ -45,7 +67,10 @@
                 <a href="/dashboard/offering/editOff/{{ $off->id }}" class="btn btn-primary" id="btnEdit" style="color: white;text-decoration:none">
                   <i class="bi bi-pen" style="color: white;"></i> Edit
                 </a>
+                @endif
+                
               </td>  
+             
           </tr>
          @endif
          @endforeach
@@ -64,7 +89,7 @@
               <th scope="col">Offer_ID</th>
               <th scope="col">Farmer Name</th>
               <th scope="col">Product</th>
-              <th scope="col">Quantity (/kg)</th>
+              <th scope="col">Quantity (kg)</th>
               <th scope="col">Total Price</th>
               <th scope="col">Notes</th>
               <th scope="col">Status</th>
@@ -81,11 +106,46 @@
                   <td>{{ $off->Farmer_Name}}</td>
                   <td>{{ $off->Harv_Name}}</td>
                   <td>{{ $off->Qty}}</td>
-                  <td>{{ $off->Offer_Price}}</td>
+                  <td>Rp.{{ number_format($off->Offer_Price)}}</td>
                   <td>{{ $off->Notes}}</td>
-                  <td>{{ $off->status }}</td> 
                   <td>
-                    
+                    <div id="status">
+                      {{-- if the status accepted --}}
+                      @if($off->status === 'Accepted')
+                        <button class="btn btn-info" style="cursor:default;">Delivery Process</button>
+                      @endcan
+                      {{-- if the status waiting --}}
+                      @if($off->status === 'Waiting')
+                        <button class="btn btn-warning" style="cursor:default;">Waiting</button>
+                      @endcan
+                      {{-- if the status declined --}}
+                      @if($off->status === 'Declined')
+                        <button class="btn btn-danger" style="cursor:default;">Declined</button>
+                      @endcan
+                      {{-- if the status complete --}}
+                      @if($off->status === 'Complete')
+                      <button class="btn btn-success" style="cursor:default;">Complete</button>
+                    @endcan
+                    @if($off->status === 'Return')
+                <button class="btn btn-secondary" style="cursor:default;">Return</button>
+              @endcan
+                      </div>
+                  </td> 
+                  <td>
+                     {{-- if the status accepted, shows the return and complete buttons --}}
+                    @if($off->status === 'Accepted')
+                    {{-- return button --}}
+                    <a href="/dashboard/offering/fromFarmer/returnOffering/{{ $off->Dist_Id}}" class="btn btn-secondary" style="color: white; text-decoration:none">
+                      <i class="bi bi-arrow-counterclockwise" style="color: white;text-decoration:none"></i> Return
+                    </a>
+                    {{-- complete button --}}
+                    <a href="/dashboard/offering/fromFarmer/completeOffering/{{ $off->id }}" class="btn btn-success" style="color: white;text-decoration:none">
+                      <i class="bi bi-bag-check" style="color: white;text-decoration:none"></i> Complete
+                    </a>
+                    @endcan
+
+                    {{-- if the status waiting, shows the accept and decline buttons --}}
+                    @if($off->status === 'Waiting')
                     {{-- accept button --}}
                     <a href="/dashboard/offering/fromFarmer/acceptOffering/{{ $off->id }}" class="btn btn-success" id= "btnAccept"  style="color: white; text-decoration:none;">
                       <i class="bi bi-check-circle" style="color: white;"></i> Accept
@@ -95,6 +155,7 @@
                     <a href="/dashboard/offering/fromFarmer/declineOffering/{{ $off->id }}" class="btn btn-danger" id= "btnDecline"  style="color: white; text-decoration:none;">
                       <i class="bi bi-ban" style="color: white;"></i> Decline
                     </a> 
+                    @endif
                   </td>  
               </tr>
             @endif
@@ -112,17 +173,4 @@
 
   </div>
 </div>
-
-<script>
-// $(document).ready(function () {
-//   var disableButton = (e) => {
-//     $('#btnDecline').prop('disabled', true);
-    
-//     $(document).on('click', '#btnAccept', disableButton);
-// };
-// });
-
-
-</script>
-
 @endsection

@@ -62,7 +62,7 @@
       </div>
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary">Update product</button>
+        <button type="submit" class="btn-upProd">Update product</button>
       </div>
 
 </form>

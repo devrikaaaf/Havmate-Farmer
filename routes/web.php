@@ -97,12 +97,17 @@ Route::get('/dashboard/offering/editOff/{id}', [OfferingController::class, 'edit
 // update offering data
 Route::post('/dashboard/offering/update/{id}', [OfferingController::class, 'update'])->middleware('auth');
 
-// accept offering
+// distributor accept offering
 Route::get('/dashboard/offering/fromFarmer/acceptOffering/{id}', [OfferingController::class, 'acceptOffering'])->middleware('auth');
 
-// decline offering
+// distributor decline offering
 Route::get('/dashboard/offering/fromFarmer/declineOffering/{id}', [OfferingController::class, 'declineOffering'])->middleware('auth');
 
+// distributor return the offering's products
+Route::get('/dashboard/offering/fromFarmer/returnOffering/{id}', [OfferingController::class, 'returnOffering'])->middleware('auth');
+
+// distributor complete the offering
+Route::get('/dashboard/offering/fromFarmer/completeOffering/{id}', [OfferingController::class, 'completeOffering'])->middleware('auth');
 
 // notif pusher offering
 // Route::get('/dashboard/index', [DashboardProductsController::class, 'show'])->middleware('auth');
@@ -154,3 +159,15 @@ Route::get('/dashboard/ordering/editOrder/{id}', [OrderController::class, 'editO
 
 // update order data
 Route::post('/dashboard/ordering/update/{id}', [OrderController::class, 'updateOrder'])->middleware('auth');
+
+// Farmer accept the order
+Route::get('/dashboard/ordering/acceptOrder/{id}', [OrderController::class, 'acceptOrder'])->middleware('auth');
+
+// Farmer decline the order
+Route::get('/dashboard/ordering/declineOrder/{id}', [OrderController::class, 'declineOrder'])->middleware('auth');
+
+// distributor return the order's products
+Route::get('/dashboard/ordering/returnOrder/{id}', [OrderController::class, 'returnOrder'])->middleware('auth');
+
+// distributor complete the order
+Route::get('/dashboard/ordering/completeOrder/{id}', [OrderController::class, 'completeOrder'])->middleware('auth');

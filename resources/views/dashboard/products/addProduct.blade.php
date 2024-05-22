@@ -58,7 +58,7 @@
       </div>
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary">Add new product</button>
+        <button type="submit" class="btn-addProd">Add Product</button>
       </div>
 
 </form>

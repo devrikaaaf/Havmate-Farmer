@@ -6,7 +6,7 @@
 @section('container')
 
 <a href="/dashboard/index">
-    <button type="button" class="btn btn-primary mb-3" >
+    <button type="button" class="btn btn-primary mb-3"  style="background: #0D261D; color: white; border: #0D261D; border-radius: 4px;"   >
         <i class="ri-arrow-left-line"></i>
         Back
     </button>

@@ -177,4 +177,28 @@ class OfferingController extends Controller
             'offering' => Offering::paginate(10),
         ]);
     }
+
+    //  when the distributor return the offering's product
+    public function returnOffering($id): View
+    {
+        // update into offering table
+        DB::update('update offering set status=? where id=?', ["Return", $id]);
+
+        return view('/dashboard/offering/index', [
+            'title' => 'Incoming Offers',  
+            'offering' => Offering::paginate(10),
+        ]);
+    }
+
+     //  when the distributor complete the offering
+     public function completeOffering($id): View
+     {
+         // update into offering table
+         DB::update('update offering set status=? where id=?', ["Complete", $id]);
+ 
+         return view('/dashboard/offering/index', [
+             'title' => 'Incoming Offers',  
+             'offering' => Offering::paginate(10),
+         ]);
+     }
 }

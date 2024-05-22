@@ -146,3 +146,40 @@
 
   </ul>
 </aside><!-- End Sidebar-->
+<script>
+  $('button').click(function(){
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger",
+  },
+  buttonsStyling: false
+});
+swalWithBootstrapButtons.fire({
+  title: "Are you sure to Logout?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  reverseButtons: true,
+  timer: 20000
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire({
+      title: "Logout!",
+      icon: "success"
+
+    });
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire({
+      title: "Cancelled",
+      icon: "error"
+    });
+  }
+});
+  });
+</script>
