@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Distributor;
 use App\Models\Farmer;
+use App\Models\Coordinate_Farmer;
+use App\Models\Coordinate_Distributor;
 use Illuminate\Support\Facades\Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +44,25 @@ class UserController extends Controller
                 $farm->Farmer_Address = $user->address;
 
                 $farm->save(); //insert to farmers table
+
+                
+
             }
+            if($user->role === 'Farmer'){
+                $loc = new Coordinate_Farmer();
+                $loc->Farmer_Id = $farm->id;
+
+                $result = app('geocoder')->geocode($user->address)->get();
+                $coordinates = $result[0]->getCoordinates();
+                $lat = $coordinates->getLatitude();
+                $long = $coordinates->getLongitude();
+
+                $loc->latitude = $lat;
+                $loc->longitude = $long;
+   
+                $loc->save();
+            }
+
             if($user->role === 'Distributor'){
                  // create new customer
                 $dist = new Distributor();
@@ -62,6 +82,20 @@ class UserController extends Controller
                 $dist->Dist_Address = $user->address;
              
                 $dist->save(); //insert to distributors table
+            }
+            if($user->role === 'Distributor'){
+                $loc = new Coordinate_Distributor();
+                $loc->Dist_Id = $dist->id;
+
+                $result = app('geocoder')->geocode($user->address)->get();
+                $coordinates = $result[0]->getCoordinates();
+                $lat = $coordinates->getLatitude();
+                $long = $coordinates->getLongitude();
+
+                $loc->latitude = $lat;
+                $loc->longitude = $long;
+   
+                $loc->save();
             }
    
         $user->save(); //insert to users table

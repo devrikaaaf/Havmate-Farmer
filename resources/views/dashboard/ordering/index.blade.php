@@ -155,6 +155,12 @@
       </tbody>
     </table>
    @endcan
+
+    {{-- pagination --}}
+    <div class="page d-flex">
+      {{ $ordering->links() }}
+    </div>
+
   </div>
 </div>
 

@@ -7,8 +7,6 @@ use App\Models\Order;
 use App\Models\Harvest;
 use App\Models\User;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -21,10 +19,8 @@ class OrderController extends Controller
     {
         $ord = new Order();
         
-
         $harv = Harvest::find($id);
         
-
         $ord->Order_ID = IdGenerator::generate([
          'table' => 'orders',
          'field' => 'Order_ID',

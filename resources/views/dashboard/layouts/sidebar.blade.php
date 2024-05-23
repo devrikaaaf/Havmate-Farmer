@@ -18,9 +18,8 @@
         
           <li class="nav-item">
            <a class="nav-link collapsed {{ Request::is('dashboard/ordering/index') ? 'active' : '' }}"  
-            href="/dashboard/ordering/fromDistributor/index">
+            href="/dashboard/ordering/toFarmer/index">
              <i class="bi bi-cart4"></i><span>Incoming Orders <span class="badge badge-number" id="order" style="background: #0D261D; display: right">0</span></span>
-            
             </a><!-- End Messages Icon -->
            </a>
 
@@ -71,7 +70,7 @@
 
      <ul class="nav flex-column">
        <li class="nav-item">
-        <a class="nav-link collapsed {{ Request::is('dashboard/offering/index') ? 'active' : '' }}"  
+        <a class="nav-link collapsed {{ Request::is('dashboard/offering/fromFarmer/index') ? 'active' : '' }}"  
          href="/dashboard/offering/fromFarmer/index">
           <i class="bi bi-arrow-down-up"></i><span>Incoming Offers <span class="badge badge-number" style="background: #0D261D; display: right">0</span></span>
         </a>   

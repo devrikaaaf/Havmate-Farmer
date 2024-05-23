@@ -21,7 +21,7 @@ Route::get('/', function() {
 
 //view registration page
 Route::get('/auth/regist', function () {
-    return view('/auth/regist', [
+    return view('auth.regist', [
         "title" => "Register"
     ]);
 })->middleware('guest');
@@ -134,7 +134,7 @@ Route::post('/dashboard/notification/notif', [DistributorController::class, 'upd
 
 // Order
 // Show order status to farmer's page
-Route::get('/dashboard/ordering/fromDistributor/index', [OrderController::class, 'showToFarmer'])->middleware('auth');
+Route::get('/dashboard/ordering/toFarmer/index', [OrderController::class, 'showToFarmer'])->middleware('auth');
 
 // Show order status to distributor's page
 Route::get('/dashboard/ordering/fromDistributor/index', [OrderController::class, 'showToDistributor'])->middleware('auth');

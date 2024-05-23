@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('coordinate_distributor', function (Blueprint $table) {
             $table->id();
-            $table->integer('coordinate_id');
             $table->foreignId('Dist_Id');
             $table->decimal('latitude');
             $table->decimal('longitude');
