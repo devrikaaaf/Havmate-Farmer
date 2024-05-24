@@ -59,10 +59,12 @@
               <td>
                 @if($off->status === 'Waiting')
                 {{-- delete button --}}
-                <a href="/dashboard/offering/index/{{ $off->id }}" class="btn btn-danger" id="btnDelete" style="color: white; text-decoration:none">
+               
+                <a  class="btn btn-danger" href="/dashboard/offering/index/{{ $off->id }}" onclick="confirmation(event)" id="btnDelete" style="color: white; text-decoration:none">
                   <i class="bi bi-trash3" style="color: white;"></i> Delete
                 </a>
-
+                
+                              
                 {{-- edit button --}}
                 <a href="/dashboard/offering/editOff/{{ $off->id }}" class="btn btn-primary" id="btnEdit" style="color: white;text-decoration:none">
                   <i class="bi bi-pen" style="color: white;"></i> Edit
@@ -147,7 +149,7 @@
                     {{-- if the status waiting, shows the accept and decline buttons --}}
                     @if($off->status === 'Waiting')
                     {{-- accept button --}}
-                    <a href="/dashboard/offering/fromFarmer/acceptOffering/{{ $off->id }}" class="btn btn-success" id= "btnAccept"  style="color: white; text-decoration:none;">
+                    <a href="/dashboard/offering/fromFarmer/acceptOffering/{{ $off->id }}" class="btn btn-success"  id= "btnAccept"  style="color: white; text-decoration:none;">
                       <i class="bi bi-check-circle" style="color: white;"></i> Accept
                     </a>
 
@@ -173,4 +175,42 @@
 
   </div>
 </div>
+<script type="text/javascript">
+
+function confirmation(ev){
+  ev.preventDefault();
+  var url = ev.currentTarget.getAttribute('href');
+
+  Swal.fire({
+           title: "Are you sure?",
+           text: "Do you want to delete this?",
+           icon: "warning",
+           showCancelButton: true,
+           confirmButtonColor: "#3085d6",
+           cancelButtonColor: "#d33",
+           confirmButtonText: "Yes, delete it!"
+         }).then((result) => {
+           if (result.isConfirmed) {
+            
+               window.location.href = url;
+ 
+               const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-right',
+                  iconColor: '#0D261D',
+                  
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+               Toast.fire({
+                  icon: 'success',
+                  title: 'Successful Delete',
+              });
+       
+           }
+         });
+}
+  
+ </script>
 @endsection

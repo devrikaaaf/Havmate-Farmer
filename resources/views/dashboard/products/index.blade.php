@@ -34,7 +34,7 @@
               <td>
 
                 {{-- delete button --}}
-                <a href="/dashboard/products/index/{{ $prod->id }}" class="btn btn-danger" style="color: white; text-decoration: none">
+                <a href="/dashboard/products/index/{{ $prod->id }}" class="btn btn-danger" onclick="confirmation(event)" id="btnDelete" style="color: white; text-decoration: none">
                   <i class="bi bi-trash3" style="color: white;text-decoration: none"></i> Delete
                 </a>
 
@@ -52,6 +52,43 @@
     <!-- End Bordered Table -->
   </div>
 </div>
+<script type="text/javascript">
+  
+function confirmation(ev){
+  ev.preventDefault();
+  var url = ev.currentTarget.getAttribute('href');
+
+  Swal.fire({
+           title: "Are you sure?",
+           text: "Do you want to delete this?",
+           icon: "warning",
+           showCancelButton: true,
+           confirmButtonColor: "#3085d6",
+           cancelButtonColor: "#d33",
+           confirmButtonText: "Yes, delete it!"
+         }).then((result) => {
+           if (result.isConfirmed) {
+            
+               window.location.href = url;
+ 
+               const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-right',
+                  iconColor: '#0D261D',
+                  
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+               Toast.fire({
+                  icon: 'success',
+                  title: 'Successful Delete',
+              });
+       
+           }
+         });
+}
+ </script>
 @endcan
 
 

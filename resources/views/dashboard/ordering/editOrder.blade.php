@@ -23,14 +23,14 @@
 
       <div class="col-md-6">
         <label for="inputHarvQty">Quantity (/kg)</label>
-        <input type="text" value="{{$ord->Qty }}" name="inputHarvQty" class="form-control" id="inputHarvQty" placeholder="ex : 20" required>
+        <input type="text" value="{{number_format($ord->Qty) }}" name="inputHarvQty" class="form-control" id="inputHarvQty" placeholder="ex : 20" required>
       </div>
 
       <div class="col-md-6">
         <label for="inputTotalPrice">Total Price</label>
           <div class="input-group col-sm-10">
             <span class="input-group-text" id="inputGroupPrepend">Rp</span>
-            <input type="text" value="{{$ord->Total_Price }}" name="inputTotalPrice" class="form-control" id="inputTotalPrice" placeholder="ex : 240000" required>
+            <input type="text" value="{{number_format($ord->Total_Price) }}" name="inputTotalPrice" class="form-control" id="inputTotalPrice" placeholder="ex : 240000" required>
             <div class="invalid-feedback">Please input your product's price!</div>
           </div>
       </div>

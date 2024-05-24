@@ -29,7 +29,7 @@
                   <form action="/auth/login" method="post" class="row g-3 needs-validation">
                     {{-- this cross site request forgery (csrf) to protect user from csrf attacks --}}
                     {{ csrf_field() }}
-                   
+
                     @if(session()->has('loginError'))
                       <div class="alert alert-danger" role="alert">
                         Incorrect Username or Password!
@@ -84,13 +84,5 @@
     </div>
   </main><!-- End #main -->
 </body>
-{{-- <script>
-  $('#login').click(function(){
-      Swal.fire({
-        title: "Successful Login!",
-        icon: "success"
-      });
-    });
-</script> --}}
 </html>
 @endsection

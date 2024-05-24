@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
 use App\Models\Harvest;
+use App\Models\Offering;
 use App\Models\Order;
 
 Route::get('/', function() {
@@ -76,7 +77,7 @@ Route::post('/dashboard/products/update/{id}', [HarvestController::class, 'updat
 
 
 // Offering
-// Show offering to farmer (distributor's page)
+// Show offering from farmer (distributor's page)
 Route::get('/dashboard/offering/toDistributor/index',[OfferingController::class, 'showToFarmer']);
 
 // Show offering to distributor (farmer's page)
@@ -110,7 +111,7 @@ Route::get('/dashboard/offering/fromFarmer/returnOffering/{id}', [OfferingContro
 Route::get('/dashboard/offering/fromFarmer/completeOffering/{id}', [OfferingController::class, 'completeOffering'])->middleware('auth');
 
 // notif pusher offering
-// Route::get('/dashboard/index', [DashboardProductsController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/index', [OfferingController::class, 'showToDistributor'])->middleware('auth');
 
 
 

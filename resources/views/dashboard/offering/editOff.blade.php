@@ -30,15 +30,15 @@
       </div>
 
       <div class="col-md-6">
-        <label for="inputHarvQty">Quantity (/kg)</label>
-        <input type="text" value="{{$off->Qty }}" name="inputHarvQty" class="form-control" id="inputHarvQty" placeholder="ex : 20" required>
+        <label for="inputHarvQty">Quantity (kg)</label>
+        <input type="text" value="{{number_format($off->Qty) }}" name="inputHarvQty" class="form-control" id="inputHarvQty" placeholder="ex : 20" required>
       </div>
 
       <div class="col-md-6">
         <label for="inputTotalPrice">Total Price</label>
           <div class="input-group col-sm-10">
             <span class="input-group-text" id="inputGroupPrepend">Rp</span>
-            <input type="text" value="{{$off->Offer_Price }}" name="inputTotalPrice" class="form-control" id="inputTotalPrice" placeholder="ex : 240000" required>
+            <input type="text" value="{{number_format($off->Offer_Price) }}" name="inputTotalPrice" class="form-control" id="inputTotalPrice" placeholder="ex : 240000" required>
             <div class="invalid-feedback">Please input your product's price!</div>
           </div>
       </div>
@@ -53,7 +53,7 @@
         <button type="submit" class="btn-upOffer"  style="background: #0D261D; color: white; border: #0D261D; border-radius: 5px; padding: 8px;"  >Update Offering</button>
       </div>
 
-</form>
+    </form>
 
   </div>
 </div>

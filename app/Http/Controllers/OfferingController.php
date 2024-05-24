@@ -62,7 +62,15 @@ class OfferingController extends Controller
         // update the data on database
         DB::update('update harvests set Harv_Stock=? where id=?', [$current, $hrv_id]);
 
-     return redirect('/dashboard/offering/fromFarmer/index');
+        $data=[
+            'farmer' => $off->Farmer_Name,
+            'product' => $off->Harv_Name,
+            'qty' => $off->Qty,
+
+        ];
+        event(new OfferingNotification($data));
+
+     return redirect('/dashboard/offering/toDistributor/index');
 
     }
 
@@ -91,8 +99,25 @@ class OfferingController extends Controller
     // delete offering's data
     public function delete($id)
     { 
-        DB::table('offering')->where('id', '=', $id)->delete();
+        // restore the stock
+        // find the offering's id
+        $offering = Offering::find($id);
+        // collect the qty of product from the offering's data
+        $harv = $offering->Qty;
+        // collect the product id from the offering's data                                                  
+        $hrvId = $offering->Harv_Id;
+        // find the product based on the id's on the harvests table
+        $checkHrv = Harvest::find($hrvId);
+        // latest stock 
+        $stock = $checkHrv->Harv_Stock;
 
+        // restore the products
+        $restore = $harv + $stock;
+
+        // update stock in the database
+        DB::update('update harvests set Harv_Stock=? where id=?' , [$restore, $hrvId]);
+        DB::table('offering')->where('id', '=', $id)->delete($id);
+        
         return redirect()->back();
     }
 

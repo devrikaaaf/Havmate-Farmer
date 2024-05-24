@@ -78,7 +78,11 @@
           let total_value = $('#inputTotalPrice').val(res);
           console.log('The input value has changed to: ' + res);
       });
+
+
   });
+
+ 
 </script>
 @endsection
 

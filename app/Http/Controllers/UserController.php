@@ -48,6 +48,7 @@ class UserController extends Controller
                 
 
             }
+             // get latitude and longitude for farmer
             if($user->role === 'Farmer'){
                 $loc = new Coordinate_Farmer();
                 $loc->Farmer_Id = $farm->id;
@@ -83,6 +84,7 @@ class UserController extends Controller
              
                 $dist->save(); //insert to distributors table
             }
+            // get latitude and longitude for distributor
             if($user->role === 'Distributor'){
                 $loc = new Coordinate_Distributor();
                 $loc->Dist_Id = $dist->id;
@@ -112,9 +114,6 @@ class UserController extends Controller
        
 
         if (Auth::attempt($credentials)) {
-
-            //alert if the user succes to login
-            // Alert::success('Login Successfully');
 
             $request->session()->regenerate(); //session regenerate is to prevent session fixation attacks
 

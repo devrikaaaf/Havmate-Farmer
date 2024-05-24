@@ -67,7 +67,7 @@
 
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn-offer">Send offering</button>
+        <button type="submit" class="btn-offer" onclick="confirmationOffer(event)">Send offering</button>
       </div>
 
 </form>
@@ -119,7 +119,9 @@
            
            
   });
-              
+ 
+
+   
 </script>
 
 @endsection

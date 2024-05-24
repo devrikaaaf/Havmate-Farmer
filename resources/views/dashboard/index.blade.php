@@ -127,8 +127,8 @@
 @can('DistributorCheck')
 
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-<script>
 
+<script>
   // Enable pusher logging - don't include this in production
   Pusher.logToConsole = true;
 
@@ -138,10 +138,33 @@
 
   var channel = pusher.subscribe('my-channel');
   channel.bind('offer-submitted', function(data) {
-    alert(JSON.stringify(data));
+    if(data && data.offer && data.offer.farmer && data.offer.product && data.offer.qty){
+
+      const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-right',
+                  iconColor: '#0D261D',
+                  showConfirmButton: false,
+                  showCloseButton: true,
+    
+                  didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+                });
+               Toast.fire({
+                  icon: 'warning',
+                  title: 'New Offers!',
+                  text: 'From : ' + data.offer.farmer +
+                 ' ' + data.offer.product + ' ' + data.offer.qty + ' kg'
+              });
+    }else{
+      console.error('Invalid data structure received : ' + data);
+    }
+
   });
 </script>
-@endcan
+
   
   @if( auth()->user()->role === 'Distributor')
 
@@ -164,4 +187,5 @@
             </form>
   @endif
   </body> 
+  @endcan
 @endsection

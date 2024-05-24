@@ -27,7 +27,7 @@
         <label for="inputHarvPrice">Price (/kg)</label>
           <div class="input-group col-sm-10">
             <span class="input-group-text" id="inputGroupPrepend">Rp</span>
-            <input type="text" value="{{ $products->Harv_Price }}" name="inputHarvPrice" class="form-control" id="inputHarvPrice" placeholder="Ex : 12000" required>
+            <input type="text" value="{{ number_format($products->Harv_Price) }}" name="inputHarvPrice" class="form-control" id="inputHarvPrice" placeholder="Ex : 12000" required>
             <div class="invalid-feedback">Please input your product's price!</div>
           </div>
       </div>
